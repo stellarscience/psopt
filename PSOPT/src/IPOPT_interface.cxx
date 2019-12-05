@@ -68,6 +68,7 @@ adouble Lagrangian_ad(adouble* xad, double* lambda, double& obj_factor, Index& m
 
 bool check_no_cancel(void *user_data)
 {
+/*
 #ifdef WIN32
     if (user_data)
     {
@@ -78,6 +79,7 @@ bool check_no_cancel(void *user_data)
         return no_cancel;
     }
 #endif
+*/
     return true;
 }
 
