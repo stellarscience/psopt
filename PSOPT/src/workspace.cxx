@@ -249,13 +249,15 @@ void initialize_workspace_vars(Prob& problem, Alg& algorithm, Sol& solution, Wor
 
   workspace->igroup = new IGroup;
 
-  string fname = "psopt_solution_" + problem.outfilename.substr(0,dotindex) + ".txt";
+  string fname = path_to_file( problem.outdirectory, "psopt_solution_" + problem.outfilename.substr(0,dotindex) + ".txt" );
 
   workspace->psopt_solution_summary_file = fopen(fname.c_str(),"w");
 
-  workspace->mesh_statistics = fopen("mesh_statistics.txt","w");
+  fname = path_to_file( problem.outdirectory, "mesh_statistics.txt" );
 
-  fname = "mesh_statistics_" + problem.outfilename.substr(0,dotindex) + ".tex";
+  workspace->mesh_statistics = fopen(fname.c_str(),"w");
+
+  fname = path_to_file( problem.outdirectory, "mesh_statistics_" + problem.outfilename.substr(0,dotindex) + ".tex" );
 
   workspace->mesh_statistics_tex = fopen( fname.c_str(),"w");
 

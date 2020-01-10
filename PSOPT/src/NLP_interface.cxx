@@ -553,7 +553,10 @@ int NLP_interface(
   // Change some options
   app->Options()->SetNumericValue("tol", workspace->algorithm->nlp_tolerance );
   app->Options()->SetStringValue("mu_strategy", "adaptive");
-  app->Options()->SetStringValue("output_file", "ipopt.out");
+
+  const string ipopt_output_file = path_to_file( problem->outdirectory, "ipopt.out" );
+
+  app->Options()->SetStringValue("output_file", ipopt_output_file);
   app->Options()->SetStringValue("nlp_scaling_method","gradient-based");
   app->Options()->SetNumericValue("max_cpu_time", workspace->algorithm->ipopt_max_cpu_time );
 

@@ -414,6 +414,8 @@ public:
 
    string  name;
 
+   string outdirectory;
+
    string  outfilename;
 
    void* user_data;
@@ -999,6 +1001,8 @@ void print_psopt_summary(Prob& problem, Alg& algorithm, Sol& solution, Workspace
 void psopt_main(Sol& solution, Prob& problem, Alg& algorithm);
 
 void clip_vector_given_bounds(DMatrix& xp, DMatrix& xlb, DMatrix& xub);
+
+string path_to_file(const string& directory, const string& filename);
 
 void psopt_print(Workspace* workspace, const char* msg);
 

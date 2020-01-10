@@ -30,6 +30,15 @@ e-mail:    v.m.becerra@ieee.org
 
 #include "psopt.h"
 
+string path_to_file(const string& directory, const string& filename)
+{
+    if ( directory.empty() ) {
+        return filename;
+    } else {
+        return directory + "/" + filename;
+    }
+}
+
 void psopt_print(Workspace* workspace, const char* msg)
 {
     if (workspace->algorithm->print_level) {
@@ -237,16 +246,17 @@ void print_psopt_summary(Prob& problem, Alg& algorithm, Sol& solution, Workspace
     FILE* outfile;
     string auxstr;
     string filename;
-    string mesh_stats_file = "mesh_statistics.txt";
+    string mesh_stats_file = path_to_file( problem.outdirectory, "mesh_statistics.txt" );
     int i;
     DMatrix mv(1);
 
     if ( !algorithm.print_level ) return;
 
     if ( problem.outfilename == "" )
-       filename = "psopt.txt";
+       filename = path_to_file( problem.outdirectory, "psopt.txt" );
     else
-       filename = problem.outfilename;
+       filename = path_to_file( problem.outdirectory, problem.outfilename );
+
     outfile = fopen( filename.c_str(), "w");
     fprintf(outfile,"\nPSOPT results summary");
     fprintf(outfile,"\n=====================\n");
